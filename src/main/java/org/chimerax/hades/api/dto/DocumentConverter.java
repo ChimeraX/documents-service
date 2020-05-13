@@ -1,8 +1,6 @@
 package org.chimerax.hades.api.dto;
 
 import org.chimerax.hades.entity.Document;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.Base64;

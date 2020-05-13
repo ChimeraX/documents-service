@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.chimerax.hades.api.dto.CreateDocumentDTO;
 import org.chimerax.hades.api.dto.DataDocumentDTO;
 import org.chimerax.hades.api.dto.NoDataDocumentDTO;
-import org.chimerax.hades.entity.Document;
 import org.chimerax.hades.repository.DocumentRepository;
 import org.chimerax.hades.service.DocumentService;
 import org.springframework.core.io.InputStreamResource;
@@ -13,8 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.*;
-import java.util.Base64;
+import java.io.ByteArrayInputStream;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
