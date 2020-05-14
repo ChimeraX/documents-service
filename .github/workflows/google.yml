@@ -41,8 +41,15 @@ jobs:
         # via gcloud command-line tool.
         gcloud auth configure-docker
 
+
+    # Build the jar
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+    - name: Build jar
+      run: ./gradlew bootJar
+
     # Build the Docker image
-    - name: Build
+    - name: Build docker image
       run: |
         docker build -t "$REGISTRY_HOSTNAME"/"$GKE_PROJECT"/"$IMAGE":"$GITHUB_SHA" \
           --build-arg GITHUB_SHA="$GITHUB_SHA" \
