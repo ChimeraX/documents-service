@@ -36,7 +36,7 @@ public class DocumentService {
                 .orElseThrow(RuntimeException::new);
     }
 
-    public void save(final CreateDocumentDTO document) {
-        documentRepository.save(documentConverter.convertToDocument(document));
+    public long save(final CreateDocumentDTO document) {
+        return documentRepository.save(documentConverter.convertToDocument(document)).getId();
     }
 }

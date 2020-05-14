@@ -11,8 +11,11 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.w3c.dom.Document;
 
 import java.io.ByteArrayInputStream;
+import java.net.URI;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
@@ -26,12 +29,14 @@ import java.io.ByteArrayInputStream;
 public class DocumentController {
 
     private DocumentService documentService;
-    private DocumentRepository documentRepository;
 
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody final CreateDocumentDTO document) {
-        documentService.save(document);
-        return ResponseEntity.ok().build();
+        final long id = documentService.save(document);
+        final URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}").buildAndExpand(id).toUri();
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping("/{id}/details")
