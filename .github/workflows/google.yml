@@ -10,12 +10,12 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
+  GKE_PROJECT: chimera-x
   GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
   GITHUB_SHA: ${{ github.sha }}
   GKE_ZONE: us-west1-a
   GKE_CLUSTER: chimera-x-cluster
-  IMAGE: gke-test
+  IMAGE: hades-service
   REGISTRY_HOSTNAME: gcr.io
   DEPLOYMENT_NAME: hades-deployment
 
@@ -40,7 +40,6 @@ jobs:
         # Set up docker to authenticate
         # via gcloud command-line tool.
         gcloud auth configure-docker
-
 
     # Build the jar
     - name: Grant execute permission for gradlew
