@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hades-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: hades-service-deployment
+  template:
+    metadata:
+      labels:
+        deployment: hades-service-deployment
+    spec:
+      containers:
+      - name: hades-service-container
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ALT_GREETING
+          value: ${{ secrets.DATABASE_URL }}

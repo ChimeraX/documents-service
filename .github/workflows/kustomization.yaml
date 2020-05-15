@@ -1,0 +1,7 @@
+commonLabels:
+  app: hades-service
+
+resources:
+- deployment.yaml
+- service.yaml
+- configMap.yaml
