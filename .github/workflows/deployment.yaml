@@ -17,5 +17,9 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: ALT_GREETING
-          value: ${{ secrets.DATABASE_URL }}
+        - name: POSTGRES_DATABASE_URL
+          value: ${{ secrets.POSTGRES_DATABASE_URL }}
+        - name: POSTGRES_DATABASE_USERNAME
+          value: ${{ secrets.POSTGRES_DATABASE_USERNAME }}
+        - name: POSTGRES_DATABASE_PASSWORD
+          value: ${{ secrets.POSTGRES_DATABASE_PASSWORD }}
