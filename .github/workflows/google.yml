@@ -64,6 +64,9 @@ jobs:
       run: |
         curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
         chmod u+x ./kustomize
+    - name: Retrieve secrets file
+      run: |
+        curl -H "Authorization: token $GITHUB_TOKEN" -H "Accept: application/vnd.github.v3.raw" -o configMap.yaml -L https://api.github.com/repos/SilviuMihnea/thessis-dev/contents/configMap.yaml?ref=master
 
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
