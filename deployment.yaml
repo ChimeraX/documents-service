@@ -18,18 +18,28 @@ spec:
         ports:
         - containerPort: 8080
         env:
-        - name: POSTGRES_DATABASE_URL
+        - name: DATABASE_DRIVER
           valueFrom:
             configMapKeyRef:
               name: config-map
-              key: POSTGRES_DATABASE_URL
-        - name: POSTGRES_DATABASE_USERNAME
+              key: DATABASE_DRIVER
+        - name: DATABASE_HOST
           valueFrom:
             configMapKeyRef:
               name: config-map
-              key: POSTGRES_DATABASE_USERNAME
-        - name: POSTGRES_DATABASE_PASSWORD
+              key: DATABASE_HOST
+        - name: DATABASE_PORT
           valueFrom:
             configMapKeyRef:
               name: config-map
-              key: POSTGRES_DATABASE_PASSWORD
+              key: DATABASE_PORT
+        - name: DATABASE_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: DATABASE_USERNAME
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: DATABASE_PASSWORD
