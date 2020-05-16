@@ -18,8 +18,17 @@ spec:
         - containerPort: 8080
         env:
         - name: POSTGRES_DATABASE_URL
-          value: ${{ secrets.POSTGRES_DATABASE_URL }}
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: POSTGRES_DATABASE_URL
         - name: POSTGRES_DATABASE_USERNAME
-          value: ${{ secrets.POSTGRES_DATABASE_USERNAME }}
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: POSTGRES_DATABASE_USERNAME
         - name: POSTGRES_DATABASE_PASSWORD
-          value: ${{ secrets.POSTGRES_DATABASE_PASSWORD }}
+          valueFrom:
+            configMapKeyRef:
+              name: config-map
+              key: POSTGRES_DATABASE_PASSWORD
