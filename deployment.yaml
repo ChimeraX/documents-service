@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: hades-service-container
-        image: hades-service
+        image: gcr.io/chimera-x/hades-service
         ports:
         - containerPort: 8080
         env:
