@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: hades-service-container
+        image: hades-service
         ports:
         - containerPort: 8080
         env:
