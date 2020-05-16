@@ -78,4 +78,3 @@ jobs:
         ./kustomize edit set image $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:${GITHUB_SHA}
         ./kustomize build . | kubectl apply -f -
         kubectl rollout restart deployment/$DEPLOYMENT_NAME
-        kubectl get services -o wide
