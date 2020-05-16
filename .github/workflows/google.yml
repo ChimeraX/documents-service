@@ -20,7 +20,7 @@ env:
   GKE_CLUSTER: chimera-x-cluster
   IMAGE: hades-service
   REGISTRY_HOSTNAME: gcr.io
-  DEPLOYMENT_NAME: hades-service-deployment
+  DEPLOYMENT_NAME: hades-service
 
 jobs:
   setup-build-publish-deploy:

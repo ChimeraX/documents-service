@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hades-service-deployment
+  name: hades-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: hades-service-deployment
+      deployment: hades-service
   template:
     metadata:
       labels:
-        deployment: hades-service-deployment
+        deployment: hades-service
     spec:
       containers:
       - name: hades-service-container
@@ -21,25 +21,25 @@ spec:
         - name: DATABASE_DRIVER
           valueFrom:
             configMapKeyRef:
-              name: config-map
+              name: config-hades-service
               key: DATABASE_DRIVER
         - name: DATABASE_HOST
           valueFrom:
             configMapKeyRef:
-              name: config-map
+              name: config-hades-service
               key: DATABASE_HOST
         - name: DATABASE_PORT
           valueFrom:
             configMapKeyRef:
-              name: config-map
+              name: config-hades-service
               key: DATABASE_PORT
         - name: DATABASE_USERNAME
           valueFrom:
             configMapKeyRef:
-              name: config-map
+              name: config-hades-service
               key: DATABASE_USERNAME
         - name: DATABASE_PASSWORD
           valueFrom:
             configMapKeyRef:
-              name: config-map
+              name: config-hades-service
               key: DATABASE_PASSWORD
