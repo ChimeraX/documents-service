@@ -2,15 +2,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hades-service
+  labels:
+    app: hades-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      deployment: hades-service
+      app: hades-service
   template:
     metadata:
       labels:
-        deployment: hades-service
+        app: hades-service
     spec:
       containers:
       - name: hades-service-container
