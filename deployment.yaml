@@ -45,3 +45,9 @@ spec:
             configMapKeyRef:
               name: config-hades-service
               key: DATABASE_PASSWORD
+        - name: EUREKA_SERVER_URL
+          valueFrom:
+            configMapKeyRef:
+              name: config-hades-service
+              key: EUREKA_SERVER_URL
+
