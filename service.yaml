@@ -4,9 +4,9 @@ metadata:
   name: hades-service
 spec:
   selector:
-    deployment: hades-service-deployment
+    deployment: hades-service
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 8666
+    port: 8080
     targetPort: 8080
