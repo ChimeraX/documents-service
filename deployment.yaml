@@ -50,4 +50,9 @@ spec:
             configMapKeyRef:
               name: config-hades-service
               key: EUREKA_SERVER_URL
+        - name: INSTANCE_IP
+          valueFrom:
+            configMapKeyRef:
+              name: config-hades-service
+              key: INSTANCE_IP
 
