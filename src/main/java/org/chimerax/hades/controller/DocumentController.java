@@ -1,10 +1,9 @@
 package org.chimerax.hades.controller;
 
 import lombok.AllArgsConstructor;
-import org.chimerax.hades.api.dto.CreateDocumentDTO;
-import org.chimerax.hades.api.dto.DataDocumentDTO;
-import org.chimerax.hades.api.dto.NoDataDocumentDTO;
-import org.chimerax.hades.repository.DocumentRepository;
+import org.chimerax.hades.api.dto.document.CreateDocumentDTO;
+import org.chimerax.hades.api.dto.document.DataDocumentDTO;
+import org.chimerax.hades.api.dto.document.NoDataDocumentDTO;
 import org.chimerax.hades.service.DocumentService;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -38,20 +37,20 @@ public class DocumentController {
         return ResponseEntity.created(location).build();
     }
 
-    @GetMapping("/{id}/details")
-    public NoDataDocumentDTO findDocumentById(@PathVariable final long id) {
-        return documentService.findDocumentById(id);
+    @GetMapping("/{id:[0-9]+}/details")
+    public ResponseEntity<NoDataDocumentDTO> findDocumentById(@PathVariable final long id) {
+        return ResponseEntity.of(documentService.findDocumentById(id));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<byte[]> findDocumentWithDataById(@PathVariable final long id) throws Exception {
+    @GetMapping("/{id:[0-9]+}")
+    public ResponseEntity<byte[]> findDocumentWithDataById(@PathVariable final long id) {
         DataDocumentDTO document = documentService.findDocumentWithDataById(id);
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(document.getType()))
                 .body(document.getData());
     }
 
-    @GetMapping(value = "/download/{id}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GetMapping(value = "/{id:[0-9]+}/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
     public ResponseEntity<InputStreamResource> findDocumentDataById(@PathVariable final long id) {
         DataDocumentDTO document = documentService.findDocumentWithDataById(id);
         InputStreamResource resource = new InputStreamResource(new ByteArrayInputStream(document.getData()));
@@ -59,6 +58,11 @@ public class DocumentController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + document.getName())
                 .contentLength(document.getSize())
                 .body(resource);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable(name = "id")  Long aLong) {
+        documentService.deleteById(aLong);
     }
 
 }

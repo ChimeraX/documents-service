@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Author: Silviu-Mihnea Cucuiet
@@ -25,10 +26,27 @@ public class Document {
 
     private String type;
 
-    @Lob
-    private byte[] data;
+    @Column(name = "data_id")
+    private long data;
 
     private long size;
 
+    @Column(name = "folder_id")
+    private long folderId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "folder_id", updatable = false, insertable = false)
+    private Folder folder;
+
     private String owner;
+
+    @Column(name = "public")
+    private Boolean isPublic;
+
+    private long createdAt;
+
+    @PrePersist
+    void prePersist() {
+        createdAt = new Date().getTime();
+    }
 }

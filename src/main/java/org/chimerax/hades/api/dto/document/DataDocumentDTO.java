@@ -1,4 +1,4 @@
-package org.chimerax.hades.api.dto;
+package org.chimerax.hades.api.dto.document;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

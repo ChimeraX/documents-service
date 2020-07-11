@@ -1,4 +1,4 @@
-package org.chimerax.hades.api.dto;
+package org.chimerax.hades.api.dto.document;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
@@ -20,4 +20,8 @@ public class CreateDocumentDTO {
     private String data;
 
     private long size;
+
+    private Long folderId;
+
+    private Boolean isPublic = false;
 }
